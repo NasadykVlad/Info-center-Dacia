@@ -1,0 +1,13 @@
+.nav-wrapper {
+    padding: 0 1rem;
+    background-color: #2F4F4F;
+    & li.active {
+        background-color: rgba(117, 117, 117, 0.89);
+    }
+    & li.news {
+        width: 95px;
+    }
+    & a {
+        margin-right: 1%;
+    }
+}

@@ -1,0 +1,22 @@
+ <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">Info-center Dacia</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        {{#if isInfo}}
+          <li class="active"><a href="/">Info</a></li>
+          {{else}}
+          <li><a href="/">Info</a></li>
+        {{/if}}
+        {{#if isShop}}
+          <li class="active"><a href="/shop">Shop</a></li>
+          {{else}}
+          <li><a href="/shop">Shop</a></li>
+        {{/if}}
+        {{#if isAbout}}
+          <li class="active news"><a href="/our_news">Our news</a></li>
+          {{else}}
+           <li class="news"><a href="/our_news">Our news</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
