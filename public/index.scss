@@ -2,12 +2,25 @@
     padding: 0 1rem;
     background-color: #2F4F4F;
     & li.active {
-        background-color: rgba(117, 117, 117, 0.89);
+        background-color: #243B30;
     }
     & li.news {
         width: 95px;
     }
     & a {
         margin-right: 1%;
+    }
+}
+
+.form_for_help {
+    border: 1px solid black;
+    border-radius: 28px;
+    padding: 0px 15px;
+    & form {
+        padding: 0!important;
+        button {
+            display: block;
+            margin: 0 auto;
+        }
     }
 }

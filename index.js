@@ -16,6 +16,7 @@ app.engine('hbs', hbs.engine) // Initialization engine hbs
 app.set('view engine', 'hbs')
 app.set('views', 'views')
 app.use(express.static('public')) // Initialization public directory (style ...)
+app.use(express.urlencoded({ extended: true })) // Listen forms
 
 // Add Routes
 app.use('/', infoRoutes)
