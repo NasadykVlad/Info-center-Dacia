@@ -1,5 +1,7 @@
 <h1>Contacts page</h1>
 
+{{> forms}}
+
 {{#if contacts.length}}
 {{#each contacts}}
 <div class="row">
@@ -14,6 +16,7 @@
         </div>
         <div class="card-action">
           <a href="/contacts/{{id}}">Open contact</a>
+          <a href="/contacts/{{id}}/edit?allow=true">Edit</a>
         </div>
       </div>
     </div>

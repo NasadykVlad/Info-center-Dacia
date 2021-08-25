@@ -1,0 +1,26 @@
+ <h1>Edit contact: {{contact.name}}</h1>
+ 
+ <div class="row form_for_help">
+    <p>If you need advice on choosing details, leave your details in the form below</p>
+    <form action="/contacts/edit" method="POST" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+          <input name="name" type="text" class="validate" required value="{{contact.name}}">
+          <label>Name</label>
+          <span class="helper-text" data-error="Enter YOUR name"></span>
+        </div>
+        <div class="input-field col s4">
+          <input name="photo" type="tel" class="validate" required value="{{contact.photo}}">
+          <label>Photo</label>
+          <span class="helper-text" data-error="Enter YOUR mobile number"></span>
+        </div>
+        <div class="input-field col s4">
+          <input name="email" type="email" class="validate" required value="{{contact.email}}">
+          <label>E-mail</label>
+          <span class="helper-text" data-error="Enter YOUR email"></span>
+        </div>
+        <input type="hidden" name="id" value="{{contact.id}}">
+        <button class="btn btn-primary">Edit</button>
+      </div>
+    </form>
+  </div>

@@ -19,6 +19,27 @@ class Contacts {
         }
     }
 
+    static async update(contact) {
+        const contacts = await Contacts.getAll()
+
+        const idx = contacts.findIndex(foo => foo.id === contact.id)
+        contacts[idx] = contact
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(
+                path.join(__dirname, '..', 'data', 'contacts.json'),
+                JSON.stringify(contacts),
+                (err) => {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve()
+                    }
+                }
+            )
+        })
+    }
+
     async save() { // Method for save contacts data at form in JSON format
         const contacts = await Contacts.getAll() // Getting promie
         contacts.push(this.toJSON());
