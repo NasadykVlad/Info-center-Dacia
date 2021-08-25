@@ -5,7 +5,7 @@ const exphbs = require('express-handlebars') // Initializarion handle-bars
 // Initializrtion Routes
 const infoRoutes = require("./routes/info")
 const shopRoutes = require("./routes/shop")
-const aboutRoutes = require("./routes/our_news")
+const aboutRoutes = require("./routes/contacts")
 
 const hbs = exphbs.create({ // Use hbs
     defaultLayout: 'main',
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true })) // Listen forms
 // Add Routes
 app.use('/', infoRoutes)
 app.use('/shop', shopRoutes)
-app.use('/our_news', aboutRoutes)
+app.use('/contacts', aboutRoutes)
 
 const PORT = process.env.PORT || 3030 // Initialization port
 

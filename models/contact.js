@@ -3,9 +3,9 @@ const fs = require('fs');
 const path = require('path');
 
 class Contacts {
-    constructor(name, number, email) {
+    constructor(name, photo, email) {
         this.name = name;
-        this.number = number;
+        this.photo = photo;
         this.email = email;
         this.id = uuid() // Generator different id
     }
@@ -13,7 +13,7 @@ class Contacts {
     toJSON() { // Parse to data in JSON
         return {
             name: this.name,
-            number: this.number,
+            photo: this.photo,
             email: this.email,
             id: this.id
         }
@@ -50,6 +50,11 @@ class Contacts {
                     }
                 })
         })
+    }
+
+    static async getById(id) {
+        const contacts = await Contacts.getAll()
+        return contacts.find(foo => foo.id === id)
     }
 }
 

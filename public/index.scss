@@ -1,11 +1,8 @@
 .nav-wrapper {
     padding: 0 1rem;
-    background-color: #2F4F4F;
+    background-color: #2F4F4F!important;
     & li.active {
         background-color: #243B30;
-    }
-    & li.news {
-        width: 95px;
     }
     & a {
         margin-right: 1%;
@@ -22,5 +19,19 @@
             display: block;
             margin: 0 auto;
         }
+    }
+}
+
+.contact {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & h1 {
+        margin-bottom: 2rem;
+    }
+    & img {
+        max-width: 600px;
+        height: auto;
     }
 }

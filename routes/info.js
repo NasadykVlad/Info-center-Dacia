@@ -11,7 +11,7 @@ router.get('/', (req, resp) => {
 })
 
 router.post('/', async(req, resp) => { // Listen forms
-    const contact = new Contact(req.body.name, req.body.number, req.body.email)
+    const contact = new Contact(req.body.name, req.body.photo, req.body.email)
     contact.save()
 
     resp.redirect('/shop') // Method for redirect

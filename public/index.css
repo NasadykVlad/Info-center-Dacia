@@ -1,14 +1,10 @@
 .nav-wrapper {
   padding: 0 1rem;
-  background-color: #2F4F4F;
+  background-color: #2F4F4F !important;
 }
 
 .nav-wrapper li.active {
   background-color: #243B30;
-}
-
-.nav-wrapper li.news {
-  width: 95px;
 }
 
 .nav-wrapper a {
@@ -28,5 +24,28 @@
 .form_for_help form button {
   display: block;
   margin: 0 auto;
+}
+
+.contact {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contact h1 {
+  margin-bottom: 2rem;
+}
+
+.contact img {
+  max-width: 600px;
+  height: auto;
 }
 /*# sourceMappingURL=index.css.map */
