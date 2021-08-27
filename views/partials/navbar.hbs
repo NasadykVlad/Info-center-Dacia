@@ -17,6 +17,11 @@
           {{else}}
            <li class="news"><a href="/contacts">Contacts</a></li>
         {{/if}}
+          {{#if isCard}}
+          <li class="active"><a href="/card">Collections</a></li>
+          {{else}}
+           <li class="news"><a href="/card">Collections</a></li>
+        {{/if}}
       </ul>
     </div>
   </nav>

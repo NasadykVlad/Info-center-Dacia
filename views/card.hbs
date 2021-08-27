@@ -1,0 +1,35 @@
+<h1>Collections</h1>
+
+<div id="card">
+{{#if contacts.length}}
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Names
+                </th>
+                <th>
+                    Counts
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each contacts}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{count}}</td>
+                <td>
+                    <button class="btn btn-primary js-remove" data-id="{{id}}">Delete</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <h4 class="count-people-collection">All people in collections: {{contacts.length}}</h4>
+{{else}}
+    <p>No collections...</p>
+{{/if}}
+</div>
