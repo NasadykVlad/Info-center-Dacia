@@ -2,6 +2,7 @@ const express = require('express') // Initialization Express.js
 const app = express() // Initialization app const
 const exphbs = require('express-handlebars') // Initializarion handle-bars
 const path = require('path');
+const mongoose = require('mongoose');
 
 // Initializrtion Routes
 const infoRoutes = require("./routes/info")
@@ -28,6 +29,18 @@ app.use('/card', cardRoutes)
 
 const PORT = process.env.PORT || 3030 // Initialization port
 
-app.listen(PORT, () => { // Start server
-    console.log(`Server is running on port: ${PORT}`)
-})
+async function start() {
+    try {
+        const url = `mongodb+srv://nasadyk:lalka228@cluster0.qjzxe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+
+        await mongoose.connect(url, { useNewUrlParser: true })
+
+        app.listen(PORT, () => { // Start server
+            console.log(`Server is running on port: ${PORT}`)
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+start()
