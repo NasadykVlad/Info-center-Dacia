@@ -15,10 +15,10 @@
           <span class="card-title name">{{name}}</span>
         </div>
         <div class="card-action">
-          <a href="/contacts/{{id}}">Open contact</a>
+          <a href="/contacts/{{_id}}">Open contact</a>
           <a href="/contacts/{{id}}/edit?allow=true">Edit</a>
           <form action="/card/add" method="POST">
-          <input type="hidden" name="id" value="{{id}}">
+          <input type="hidden" name="id" value="{{_id}}">
             <button class="btn btn-primary add-card" type="submit">Add</button>
           </form>
         </div>

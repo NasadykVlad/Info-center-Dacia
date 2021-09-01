@@ -4,6 +4,11 @@ const exphbs = require('express-handlebars') // Initializarion handle-bars
 const path = require('path');
 const mongoose = require('mongoose');
 
+const Handlebars = require('handlebars')
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
+
+
+
 // Initializrtion Routes
 const infoRoutes = require("./routes/info")
 const shopRoutes = require("./routes/shop")
@@ -12,8 +17,9 @@ const cardRoutes = require("./routes/card")
 
 const hbs = exphbs.create({ // Use hbs
     defaultLayout: 'main',
-    extname: 'hbs'
-})
+    extname: 'hbs',
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
+});
 
 app.engine('hbs', hbs.engine) // Initialization engine hbs
 app.set('view engine', 'hbs')
@@ -31,7 +37,7 @@ const PORT = process.env.PORT || 3030 // Initialization port
 
 async function start() {
     try {
-        const url = `mongodb+srv://nasadyk:lalka228@cluster0.qjzxe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+        const url = `mongodb+srv://nasadyk:lalka228@cluster0.qjzxe.mongodb.net/info-center-dacia`
 
         await mongoose.connect(url, { useNewUrlParser: true })
 

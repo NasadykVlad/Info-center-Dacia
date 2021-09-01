@@ -11,9 +11,19 @@ router.get('/', (req, resp) => {
 })
 
 router.post('/', async(req, resp) => { // Listen forms
-    const contact = new Contact(req.body.name, req.body.photo, req.body.email)
-    contact.save()
-    resp.redirect('/contacts') // Method for redirect
+    // const contact = new Contact(req.body.name, req.body.photo, req.body.email)
+    const contact = new Contact({
+        name: req.body.name,
+        photo: req.body.photo,
+        email: req.body.email
+    })
+
+    try {
+        await contact.save()
+        resp.redirect('/contacts') // Method for redirect
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 module.exports = router;
