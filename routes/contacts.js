@@ -1,7 +1,5 @@
 const { Router } = require('express');
 const Contact = require('../models/contact')
-const mongoose = require('mongoose');
-
 
 const router = Router();
 
@@ -34,13 +32,29 @@ router.post('/edit', async(req, resp) => {
     resp.redirect('/contacts')
 })
 
+router.post('/remove', async(req, resp) => {
+    try {
+        await Contact.deleteOne({
+            _id: req.body.id
+        })
+        resp.redirect('/contacts')
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 router.get('/:id', async(req, resp) => {
-    const contact = await Contact.findById(req.params.id)
-    resp.render('contact', {
-        layout: 'empty',
-        title: 'Course title',
-        contact
-    })
+    try {
+        const contact = await Contact.findById(req.params.id)
+
+        resp.render('contact', {
+            layout: 'empty',
+            title: 'Course title',
+            contact
+        })
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 module.exports = router;
