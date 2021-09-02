@@ -15,7 +15,8 @@ router.post('/', async(req, resp) => { // Listen forms
     const contact = new Contact({
         name: req.body.name,
         photo: req.body.photo,
-        email: req.body.email
+        email: req.body.email,
+        userId: req.user
     })
 
     try {

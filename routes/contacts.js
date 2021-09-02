@@ -5,6 +5,8 @@ const router = Router();
 
 router.get('/', async(req, resp) => {
     const contacts = await Contact.find()
+        .populate('userId', 'email name')
+        .select('name photo email')
     resp.render('contacts', {
         title: 'Contacts page',
         isContact: true,
