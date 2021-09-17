@@ -20,4 +20,14 @@ const contact = new Schema({
     }
 })
 
+contact.method('toClient', function() {
+    const contact = this.toObject()
+
+    contact.id = contact._id;
+
+    delete contact._id
+
+    return contact
+})
+
 module.exports = model('Contact', contact)

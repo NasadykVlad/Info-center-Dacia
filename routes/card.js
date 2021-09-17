@@ -5,6 +5,7 @@ const Contact = require('../models/contact');
 function mapCartItems(cart) {
     return cart.items.map(c => ({
         ...c.contactID._doc,
+        id: c.contactID.id,
         count: c.count
     }))
 }
@@ -16,8 +17,13 @@ router.post('/add', async(req, resp) => {
 })
 
 router.delete('/remove/:id', async(req, resp) => {
-    const card = await Card.remove(req.params.id)
-    resp.status(200).json(card)
+    await req.user.removeFromCart(req.params.id)
+
+    const user = await req.user.populate('cart.items.contactID')
+    const contacts = mapCartItems(user.cart)
+    const cart = { contacts }
+
+    resp.status(200).json(cart)
 })
 
 router.get('/', async(req, resp) => {
