@@ -20,7 +20,7 @@ const userSchema = new Schema({
                 required: true,
                 default: 1
             },
-            courseID: {
+            contactID: {
                 type: Schema.Types.ObjectId,
                 ref: 'Contact',
                 required: true
@@ -32,14 +32,14 @@ const userSchema = new Schema({
 userSchema.methods.addToCart = function(contact) {
     const items = [...this.cart.items.concat()]
     const idx = items.findIndex(c => {
-        return c.courseID.toString() === contact._id.toString()
+        return c.contactID.toString() === contact._id.toString()
     })
 
     if (idx >= 0) {
         items[idx].count = items[idx].count + 1
     } else {
         items.push({
-            courseID: contact._id,
+            contactID: contact._id,
             count: 1
         })
     }
