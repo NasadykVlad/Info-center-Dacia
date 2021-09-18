@@ -1,1 +1,26 @@
-<h1>Orders</h1>
+<h1>My orders</h1>
+
+{{#if orders.length}}
+    {{#each orders}}
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">
+                        Order №: <small>{{_id}}</small>
+                    </span>
+                    <p>Name: <em>{{user.userId.name}}</em></p>
+                    <p>Email: {{user.userId.email}}</p>
+                    <ol>
+                        {{#each contacts}}
+                            <li>{{contact.name}} (x<strong>{{count}}</strong>)</li>
+                        {{/each}}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+{{else}}
+    <p>No orders</p>
+{{/if}}

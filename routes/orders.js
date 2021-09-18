@@ -3,14 +3,50 @@ const Order = require('../models/order.js')
 const router = Router()
 
 router.get('/', async(req, resp) => {
-    resp.render('orders', {
-        isOrder: true,
-        title: 'Orders'
-    })
+    try {
+        const orders = await Order.find({
+            'user.userId': req.user._id
+        }).populate('user.userId')
+
+        resp.render('orders', {
+            isOrder: true,
+            title: 'Orders',
+            orders: orders.map(o => {
+                return {
+                    ...o._doc
+                }
+            })
+        })
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 router.post('/', async(req, resp) => {
-    resp.redirect('/orders')
+    try {
+        const user = await req.user
+            .populate('cart.items.contactID')
+
+        const contacts = user.cart.items.map(i => ({
+            count: i.count,
+            contact: {...i.contactID._doc }
+        }))
+
+        const order = new Order({
+            user: {
+                name: req.user.name,
+                userId: req.user
+            },
+            contacts: contacts
+        })
+
+        await order.save()
+        await req.user.clearCart()
+
+        resp.redirect('/orders')
+    } catch (err) {
+        console.log(err)
+    }
 })
 
 module.exports = router
