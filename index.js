@@ -13,6 +13,7 @@ const infoRoutes = require("./routes/info")
 const shopRoutes = require("./routes/shop")
 const aboutRoutes = require("./routes/contacts")
 const cardRoutes = require("./routes/card");
+const ordersRoutes = require("./routes/orders")
 const { isError } = require('util');
 
 const hbs = exphbs.create({ // Use hbs
@@ -42,6 +43,7 @@ app.use('/', infoRoutes)
 app.use('/shop', shopRoutes)
 app.use('/contacts', aboutRoutes)
 app.use('/card', cardRoutes)
+app.use('/orders', ordersRoutes)
 
 const PORT = process.env.PORT || 3030 // Initialization port
 

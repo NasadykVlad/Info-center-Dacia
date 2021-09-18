@@ -29,6 +29,11 @@
         </tbody>
     </table>
     <h4 class="count-people-collection">All people in collections: {{contacts.length}}</h4>
+
+    <form action="/orders" method="POST">
+        <button type="submit" class="btn">Make order</button>
+    </form>
+  
 {{else}}
     <p>No collections...</p>
 {{/if}}
