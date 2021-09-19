@@ -12,30 +12,31 @@
           {{else}}
           <li><a href="/shop">Shop</a></li>
         {{/if}}
-        {{#if isContact}}
-          <li class="active"><a href="/contacts">Contacts</a></li>
-          {{else}}
-           <li class="news"><a href="/contacts">Contacts</a></li>
+      
+        {{#if isAuth}}
+                {{#if isContact}}
+                <li class="active"><a href="/contacts">Contacts</a></li>
+                {{else}}
+                <li class="news"><a href="/contacts">Contacts</a></li>
+              {{/if}}
+                {{#if isCard}}
+                <li class="active"><a href="/card">Collections</a></li>
+                {{else}}
+                <li class="news"><a href="/card">Collections</a></li>
+              {{/if}}
+              {{#if isOrder}}
+                <li class="active"><a href="/orders">Orders</a></li>
+                {{else}}
+                <li><a href="/orders">Orders</a></li>
+              {{/if}}
+                <li style="width: 85px;"><a href="/auth/logout">Log Out</a></li>
+        {{else}}
+                {{#if isLogin}}
+                <li class="active"><a href="/auth/login">Login</a></li>
+                {{else}}
+                <li><a href="/auth/login#login">Login</a></li>
+              {{/if}}
         {{/if}}
-          {{#if isCard}}
-          <li class="active"><a href="/card">Collections</a></li>
-          {{else}}
-           <li class="news"><a href="/card">Collections</a></li>
-        {{/if}}
-
-         {{#if isOrder}}
-          <li class="active"><a href="/orders">Orders</a></li>
-          {{else}}
-           <li><a href="/orders">Orders</a></li>
-        {{/if}}
-
-         {{#if isLogin}}
-          <li class="active"><a href="/auth/login">Login</a></li>
-          {{else}}
-           <li><a href="/auth/login#login">Login</a></li>
-        {{/if}}
-        
-        
       </ul>
     </div>
   </nav>

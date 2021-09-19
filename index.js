@@ -3,9 +3,11 @@ const app = express() // Initialization app const
 const exphbs = require('express-handlebars') // Initializarion handle-bars
 const path = require('path');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const Handlebars = require('handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const User = require('./models/user')
+const varMiddleware = require('./middleware/variables')
 
 
 // Initialization Routes
@@ -23,21 +25,18 @@ const hbs = exphbs.create({ // Use hbs
     handlebars: allowInsecurePrototypeAccess(Handlebars)
 });
 
-app.use(async(req, resp, next) => {
-    try {
-        const user = await User.findById('6130f0a53fdbd75dfb0be690');
-        req.user = user;
-        next()
-    } catch (err) {
-        console.log(err)
-    }
-})
-
 app.engine('hbs', hbs.engine) // Initialization engine hbs
 app.set('view engine', 'hbs')
 app.set('views', 'views')
 app.use(express.static(path.join(__dirname, 'public'))) // Initialization public directory (style ...)
 app.use(express.urlencoded({ extended: true })) // Listen forms
+app.use(session({
+    secret: 'some secret value',
+    resave: false,
+    saveUninitialized: false
+}))
+app.use(varMiddleware)
+
 
 // Add Routes
 app.use('/', infoRoutes)
@@ -55,17 +54,17 @@ async function start() {
 
         await mongoose.connect(url, { useNewUrlParser: true })
 
-        const candidate = await User.findOne();
-        if (!candidate) {
-            const user = new User({
-                name: 'Vladyslav',
-                age: 20,
-                email: 't.empire228@gmail.com',
-                cart: { items: [] }
-            })
+        // const candidate = await User.findOne();
+        // if (!candidate) {
+        //     const user = new User({
+        //         name: 'Vladyslav',
+        //         age: 20,
+        //         email: 't.empire228@gmail.com',
+        //         cart: { items: [] }
+        //     })
 
-            await user.save()
-        }
+        //     await user.save()
+        // }
 
         app.listen(PORT, () => { // Start server
             console.log(`Server is running on port: ${PORT}`)
