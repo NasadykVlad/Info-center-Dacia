@@ -14,6 +14,7 @@ const shopRoutes = require("./routes/shop")
 const aboutRoutes = require("./routes/contacts")
 const cardRoutes = require("./routes/card");
 const ordersRoutes = require("./routes/orders")
+const authRoutes = require("./routes/auth")
 const { isError } = require('util');
 
 const hbs = exphbs.create({ // Use hbs
@@ -44,6 +45,7 @@ app.use('/shop', shopRoutes)
 app.use('/contacts', aboutRoutes)
 app.use('/card', cardRoutes)
 app.use('/orders', ordersRoutes)
+app.use('/auth', authRoutes)
 
 const PORT = process.env.PORT || 3030 // Initialization port
 

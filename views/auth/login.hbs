@@ -1,0 +1,55 @@
+ <div class="tabs-container" style="margin-top: 20px;">
+ <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a class="active" href="#register">Register</a></li>
+        <li class="tab col s6"><a class="active" href="#login">Login</a></li>
+      </ul>
+    </div>
+    <div id="login" class="col s6 offset-s3">
+    <div class="row form_for_help">
+    <form action="/" method="POST" class="col s12">
+    <h4>Login in Info-center Dacia</h4>
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="email" id="email" type="email" class="validate" required>
+          <label for="email">E-mail</label>
+          <span class="helper-text" data-error="Enter email"></span>
+        </div>
+        <div class="input-field col s6">
+          <input name="password" id="password" type="password" class="validate" required>
+          <label for="password">Password</label>
+          <span class="helper-text" data-error="Enter password"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+  </div>
+    </div>
+    <div id="register" class="col s6 offset-s3">
+    <div class="row form_for_help">
+    <form action="/" method="POST" class="col s12">
+    <h4>Register in Info-center Dacia</h4>
+      <div class="row">
+        <div class="input-field col s4">
+          <input name="email" id="remail" type="email" class="validate" required>
+          <label for="remail">E-mail</label>
+          <span class="helper-text" data-error="Enter email"></span>
+        </div>
+        <div class="input-field col s4">
+          <input name="password" id="rpassword" type="password" class="validate" required>
+          <label for="rpassword">Password</label>
+          <span class="helper-text" data-error="Enter password"></span>
+        </div>
+         <div class="input-field col s4">
+          <input name="confirm" id="confirm" type="password" class="validate" required>
+          <label for="confirm">Password again</label>
+          <span class="helper-text" data-error="Enter password"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </form>
+  </div>
+    </div>
+    </div>
+</div>
