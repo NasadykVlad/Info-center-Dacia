@@ -2,7 +2,7 @@
  
  <div class="row form_for_help">
     <p>If you need advice on choosing details, leave your details in the form below</p>
-    <form action="/contacts/edit" method="POST" class="col s12">
+    <form action="/shop/edit" method="POST" class="col s12">
       <div class="row">
         <div class="input-field col s4">
           <input name="name" type="text" class="validate" required value="{{contact.name}}">
@@ -15,8 +15,8 @@
           <span class="helper-text" data-error="Enter YOUR mobile number"></span>
         </div>
         <div class="input-field col s4">
-          <input name="email" type="email" class="validate" required value="{{contact.email}}">
-          <label>E-mail</label>
+          <input name="email" type="number" class="validate" required value="{{contact.email}}">
+          <label>Price</label>
           <span class="helper-text" data-error="Enter YOUR email"></span>
         </div>
       </div>
@@ -24,7 +24,7 @@
       <input type="hidden" name="id" value="{{contact.id}}">
       <button type="submit" class="btn btn-primary">Edit</button>
     </form>
-    <form style="display: inline-block; margin-left: 10px" action="/contacts/remove" method="POST">
+    <form style="display: inline-block; margin-left: 10px" action="/shop/remove" method="POST">
     <input type="hidden" name="id" value={{contact.id}}>
     <button class="btn red">Delete contact</button>
     </form>

@@ -4,11 +4,14 @@ const exphbs = require('express-handlebars') // Initializarion handle-bars
 const path = require('path');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const MongoStore = require('connect-mongodb-session')(session)
 const Handlebars = require('handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const User = require('./models/user')
 const varMiddleware = require('./middleware/variables')
+const userMiddleware = require('./middleware/user')
 
+const MONGODB_URI = `mongodb+srv://nasadyk:lalka228@cluster0.qjzxe.mongodb.net/info-center-dacia`
 
 // Initialization Routes
 const infoRoutes = require("./routes/info")
@@ -24,6 +27,11 @@ const hbs = exphbs.create({ // Use hbs
     extname: 'hbs',
     handlebars: allowInsecurePrototypeAccess(Handlebars)
 });
+const store = new MongoStore({
+    collection: 'sessions',
+    uri: MONGODB_URI
+
+})
 
 app.engine('hbs', hbs.engine) // Initialization engine hbs
 app.set('view engine', 'hbs')
@@ -33,9 +41,11 @@ app.use(express.urlencoded({ extended: true })) // Listen forms
 app.use(session({
     secret: 'some secret value',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store
 }))
 app.use(varMiddleware)
+app.use(userMiddleware)
 
 
 // Add Routes
@@ -50,21 +60,7 @@ const PORT = process.env.PORT || 3030 // Initialization port
 
 async function start() {
     try {
-        const url = `mongodb+srv://nasadyk:lalka228@cluster0.qjzxe.mongodb.net/info-center-dacia`
-
-        await mongoose.connect(url, { useNewUrlParser: true })
-
-        // const candidate = await User.findOne();
-        // if (!candidate) {
-        //     const user = new User({
-        //         name: 'Vladyslav',
-        //         age: 20,
-        //         email: 't.empire228@gmail.com',
-        //         cart: { items: [] }
-        //     })
-
-        //     await user.save()
-        // }
+        await mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
 
         app.listen(PORT, () => { // Start server
             console.log(`Server is running on port: ${PORT}`)

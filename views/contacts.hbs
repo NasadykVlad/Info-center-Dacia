@@ -1,31 +1,3 @@
-<h1>Contacts page</h1>
+<h1>Add product page</h1>
 
 {{> forms}}
-
-{{#if contacts.length}}
-{{#each contacts}}
-<div class="row">
-    <div class="col s6 offset-s3">
-      <div class="card">
-        <div class="card-image">
-          <img src="{{photo}}">
-        </div>
-        <div class="card-content">
-          <p>{{email}}</p>
-          <span class="card-title name">{{name}}</span>
-        </div>
-        <div class="card-action">
-          <a href="/contacts/{{id}}">Open contact</a>
-          <a href="/contacts/{{id}}/edit?allow=true">Edit</a>
-          <form action="/card/add" method="POST">
-          <input type="hidden" name="id" value="{{id}}">
-            <button class="btn btn-primary add-card" type="submit">Add</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-{{/each}}
-{{else}}
-<p>No course...</p>
-{{/if}}

@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const Contact = require('../models/contact')
+const auth = require('../middleware/auth')
+
 
 const router = Router();
 
@@ -10,8 +12,7 @@ router.get('/', (req, resp) => {
     })
 })
 
-router.post('/', async(req, resp) => { // Listen forms
-    // const contact = new Contact(req.body.name, req.body.photo, req.body.email)
+router.post('/', auth, async(req, resp) => { // Listen forms
     const contact = new Contact({
         name: req.body.name,
         photo: req.body.photo,
