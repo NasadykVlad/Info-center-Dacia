@@ -6,7 +6,10 @@ const userSchema = new Schema({
         required: true
     },
     age: {
-        type: Number,
+        type: Number
+    },
+    password: {
+        type: String,
         required: true
     },
     email: {

@@ -31,21 +31,27 @@
     <form action="/auth/register" method="POST" class="col s12">
     <h4>Register in Info-center Dacia</h4>
       <div class="row">
-        <div class="input-field col s4">
+        <div class="input-field col s3">
+          <input name="name" id="name" type="text" class="validate" required>
+          <label for="name">Name</label>
+          <span class="helper-text" data-error="Enter name"></span>
+        </div>
+        <div class="input-field col s3">
           <input name="email" id="remail" type="email" class="validate" required>
           <label for="remail">E-mail</label>
           <span class="helper-text" data-error="Enter email"></span>
         </div>
-        <div class="input-field col s4">
+        <div class="input-field col s3">
           <input name="password" id="rpassword" type="password" class="validate" required>
           <label for="rpassword">Password</label>
           <span class="helper-text" data-error="Enter password"></span>
         </div>
-         <div class="input-field col s4">
+         <div class="input-field col s3">
           <input name="confirm" id="confirm" type="password" class="validate" required>
           <label for="confirm">Password again</label>
           <span class="helper-text" data-error="Enter password"></span>
         </div>
+        
         <button type="submit" class="btn btn-primary">Register</button>
       </div>
     </form>
