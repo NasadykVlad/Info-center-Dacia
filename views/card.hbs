@@ -22,7 +22,8 @@
                 <td>{{name}}</td>
                 <td>{{count}}</td>
                 <td>
-                    <button class="btn btn-primary js-remove" data-id="{{_id}}">Delete</button>
+                    <button class="btn btn-primary js-remove" data-id="{{id}}"
+                    data-csrf="{{@root.csrf}}">Delete</button>
                 </td>
             </tr>
             {{/each}}
@@ -31,6 +32,10 @@
     <h4 class="count-people-collection">Count other product in collections: {{contacts.length}}</h4>
 
     <form action="/orders" method="POST">
+
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+
+
         <button type="submit" class="btn">Make order</button>
     </form>
   

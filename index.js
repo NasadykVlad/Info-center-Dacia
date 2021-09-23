@@ -7,9 +7,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session)
 const Handlebars = require('handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
-const User = require('./models/user')
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
+const csrf = require('csurf');
+const flash = require('connect-flash');
 
 const MONGODB_URI = `mongodb+srv://nasadyk:lalka228@cluster0.qjzxe.mongodb.net/info-center-dacia`
 
@@ -44,6 +45,8 @@ app.use(session({
     saveUninitialized: false,
     store
 }))
+app.use(csrf())
+app.use(flash());
 app.use(varMiddleware)
 app.use(userMiddleware)
 
