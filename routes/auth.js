@@ -1,7 +1,15 @@
 const { Router } = require('express')
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs')
 const router = Router()
+const nodemailer = require('nodemailer')
+const sendgrid = require('nodemailer-sendgrid-transport')
 const User = require('../models/user')
+const keys = require('../keys')
+const reqEmail = require('../emails/registration')
+
+const transporter = nodemailer.createTransport(sendgrid({
+    auth: { api_key: keys.SENDGRID_API_KEY }
+}))
 
 router.get('/login', async(req, resp) => {
     resp.render('auth/login', {
@@ -67,6 +75,7 @@ router.post('/register', async(req, resp) => {
                 }
             })
             await user.save()
+            await transporter.sendMail(reqEmail(email))
             resp.redirect('/auth/login#login')
         }
 

@@ -11,8 +11,7 @@ const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
 const csrf = require('csurf');
 const flash = require('connect-flash');
-
-const MONGODB_URI = `mongodb+srv://nasadyk:lalka228@cluster0.qjzxe.mongodb.net/info-center-dacia`
+const keys = require('./keys')
 
 // Initialization Routes
 const infoRoutes = require("./routes/info")
@@ -30,7 +29,7 @@ const hbs = exphbs.create({ // Use hbs
 });
 const store = new MongoStore({
     collection: 'sessions',
-    uri: MONGODB_URI
+    uri: keys.MONGODB_URI
 
 })
 
@@ -40,7 +39,7 @@ app.set('views', 'views')
 app.use(express.static(path.join(__dirname, 'public'))) // Initialization public directory (style ...)
 app.use(express.urlencoded({ extended: true })) // Listen forms
 app.use(session({
-    secret: 'some secret value',
+    secret: keys.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store
@@ -63,7 +62,7 @@ const PORT = process.env.PORT || 3030 // Initialization port
 
 async function start() {
     try {
-        await mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
+        await mongoose.connect(keys.MONGODB_URI, { useNewUrlParser: true })
 
         app.listen(PORT, () => { // Start server
             console.log(`Server is running on port: ${PORT}`)
