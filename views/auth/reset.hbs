@@ -1,0 +1,30 @@
+ <div class="row">
+    <div class="col s6 offset-s3">
+    <div class="row form_for_help">
+
+      {{#if error}}
+        <p style="padding: 0.5rem 1rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 1rem;
+    background: rgba(255, 0, 0, .3);
+    color: red" class='alert'>{{error}}</p>
+      {{/if}}
+
+    <form action="/auth/reset" method="POST" class="col s12">
+    <h4>Forgot your password? </h4>
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="email" id="email" type="email" class="validate" required>
+          <label for="email">E-mail</label>
+          <span class="helper-text" data-error="Enter email"></span>
+        </div>
+    
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+
+        <button style="margin-top: 26px" type="submit" class="btn btn-primary">Change</button>
+      </div>
+    </form>
+  </div>
+    </div>
+    </div>
