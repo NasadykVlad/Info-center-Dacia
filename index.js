@@ -25,7 +25,8 @@ const { isError } = require('util');
 const hbs = exphbs.create({ // Use hbs
     defaultLayout: 'main',
     extname: 'hbs',
-    handlebars: allowInsecurePrototypeAccess(Handlebars)
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
+    helpers: require('./utils/hbs-helpers')
 });
 const store = new MongoStore({
     collection: 'sessions',
