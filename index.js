@@ -9,6 +9,7 @@ const Handlebars = require('handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
+const errorHandler = require('./middleware/error')
 const csrf = require('csurf');
 const flash = require('connect-flash');
 const keys = require('./keys')
@@ -58,6 +59,8 @@ app.use('/contacts', aboutRoutes)
 app.use('/card', cardRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/auth', authRoutes)
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3030 // Initialization port
 
