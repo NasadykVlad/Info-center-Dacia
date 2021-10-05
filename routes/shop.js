@@ -2,10 +2,6 @@ const { Router } = require('express');
 const Contact = require('../models/contact')
 const auth = require('../middleware/auth');
 const user = require('../models/user');
-const { contactValidators } = require('../utils/validators');
-const contact = require('../models/contact');
-const { validationResult } = require('express-validator/check')
-
 
 function isOwner(contact, req) {
     return contact.userId.toString() !== req.user._id.toString()
@@ -51,7 +47,7 @@ router.get('/:id/edit', auth, async(req, resp) => {
     }
 })
 
-router.post('/edit', auth, contactValidators, async(req, resp) => {
+router.post('/edit', auth, async(req, resp) => {
     try {
         const { id } = req.body
         delete req.body.id

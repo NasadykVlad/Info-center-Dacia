@@ -24,7 +24,7 @@ if ($card) {
                         </tr>`
                         }).join('')
                         $card.querySelector('tbody').innerHTML = html
-                        $card.querySelector('.count-people-collection').textContent = `All people in collections: ${card.contacts.length}`
+                        $card.querySelector('.count-people-collection').textContent = `Count other product in collections: ${card.contacts.length}`
                     } else {
                         $card.innerHTML = '<p>No collections...</p>'
                     }

@@ -3,13 +3,14 @@ const app = express() // Initialization app const
 const exphbs = require('express-handlebars') // Initializarion handle-bars
 const path = require('path');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
+const compression = require('compression');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session)
 const Handlebars = require('handlebars')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const varMiddleware = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
-const errorHandler = require('./middleware/error')
 const fileMiddleware = require('./middleware/file')
 const csrf = require('csurf');
 const flash = require('connect-flash');
@@ -52,6 +53,16 @@ app.use(session({
 app.use(fileMiddleware.single('avatar'))
 app.use(csrf())
 app.use(flash());
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+            "img-src": ["'self'", "https:"],
+            "script-src-elem": ["'self'", "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js", "'unsafe-inline'"]
+        }
+    }
+}));
+app.use(compression());
 app.use(varMiddleware)
 app.use(userMiddleware)
 
@@ -64,8 +75,6 @@ app.use('/card', cardRoutes)
 app.use('/orders', ordersRoutes)
 app.use('/auth', authRoutes)
 app.use('/profile', profileRoutes)
-
-app.use(errorHandler);
 
 const PORT = process.env.PORT || 3030 // Initialization port
 

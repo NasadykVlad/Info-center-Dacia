@@ -1,26 +1,21 @@
  <div class="row form_for_help">
     <p>Here you can add the item to the store</p>
-
-    {{#if error}}
-      <p class="alert">{{error}}</p>
-    {{/if}}
-
-    <form action="/" method="POST" class="col s12" novalidate>
+    <form action="/" method="POST" class="col s12">
       <div class="row">
         <div class="input-field col s4">
-          <input name="name" type="text" class="validate" required value="{{data.name}}">
+          <input name="name" type="text" class="validate" required>
           <label>Name</label>
-          <span class="helper-text" data-error="Enter YOUR name"></span>
+          <span class="helper-text" data-error="Enter name product"></span>
         </div>
         <div class="input-field col s4">
-          <input name="photo" type="tel" class="validate" required value="{{data.photo}}">
+          <input name="photo" type="tel" class="validate" required>
           <label>Photo</label>
-          <span class="helper-text" data-error="Enter YOUR mobile number"></span>
+          <span class="helper-text" data-error="Enter YOUR photo link"></span>
         </div>
         <div class="input-field col s4">
-          <input name="email" type="number" class="validate" required value="{{data.email}}">
+          <input name="email" type="number" class="validate" required>
           <label>Price</label>
-          <span class="helper-text" data-error="Enter YOUR email"></span>
+          <span class="helper-text" data-error="Enter price product"></span>
         </div>
 
         <input type="hidden" name="_csrf" value="{{csrf}}">
